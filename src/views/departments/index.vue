@@ -6,7 +6,7 @@
       </el-card>
       <el-tree default-expand-all :data="departs" :props="defaultProps">
         <template v-slot="{ data }">
-          <TreeTool :is-root="false" :tree-data="data"></TreeTool>
+          <TreeTool :is-root="false" :tree-data="data" @getDepartments="getDepartments"></TreeTool>
         </template>
       </el-tree>
     </div>
@@ -16,12 +16,15 @@
 <script>
 import TreeTool from './components/tree-tools.vue'
 import { getDepartments } from '@/api/departments.js'
+import { transListToTreeNew } from '@/utils/index.js'
 export default {
+  // 头部和列表组件引用
   components: {
     TreeTool
   },
   data() {
     return {
+      // 组织结构的数据列表
       defaultProps: {
         children: 'children',
         label: 'name'
@@ -36,15 +39,18 @@ export default {
   created() {
     this.getDepartments()
   },
+  // 获取树形结构数据列表
   methods: {
     async getDepartments() {
       const res = await getDepartments()
-      console.log(res);
+      // console.log(res);
+      // 赋值渲染
       this.company = {
         name: res.companyName,
-        manager: res.companyManager || '超级管理员'
+        manager: res.companyManager || '负责人'
       }
-      this.departs = res.depts
+      // 封装的树形结构桥套方法调用
+      this.departs = transListToTreeNew(res.depts, '')
     }
   }
 };
