@@ -14,15 +14,26 @@ module.exports = {
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
-    "vue/max-attributes-per-line": [2, {
-      "singleline": 10,
-      "multiline": {
-        "max": 1,
-        "allowFirstLine": false
-      }
-    }],
+    // "vue/max-attributes-per-line": [2, {
+    //   "singleline": 10,
+    //   "multiline": {
+    //     "max": 1,
+    //     "allowFirstLine": falseindent
+    //   }
+    // }],
+    "vue/order-in-components": 'off',
+    "vue/html-self-closing": 'off',
+    "key-spacing": 'off',
+    "space-before-function-paren": "off",
+    'no-trailing-spaces': 'off',
+    "quotes": "off",
+    "Strings must use singlequote": "off",
+    "object-curly-spacing": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "vue/html-indent": "off",
+    "vue/max-attributes-per-line": 'off',
     "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline":"off",
+    "vue/multiline-html-element-content-newline": "off",
     "vue/name-property-casing": ["error", "PascalCase"],
     "vue/no-v-html": "off",
     'accessor-pairs': 2,
@@ -46,8 +57,8 @@ module.exports = {
     'constructor-super': 2,
     'curly': [2, 'multi-line'],
     'dot-location': [2, 'property'],
-    'eol-last': 2,
-    'eqeqeq': ["error", "always", {"null": "ignore"}],
+    // 'eol-last': 2,
+    'eqeqeq': ["error", "always", { "null": "ignore" }],
     'generator-star-spacing': [2, {
       'before': true,
       'after': true
@@ -57,10 +68,10 @@ module.exports = {
       'SwitchCase': 1
     }],
     'jsx-quotes': [2, 'prefer-single'],
-    'key-spacing': [2, {
-      'beforeColon': false,
-      'afterColon': true
-    }],
+    // 'key-spacing': [2, {
+    //   'beforeColon': false,
+    //   'afterColon': true
+    // }],
     'keyword-spacing': [2, {
       'before': true,
       'after': true
@@ -132,7 +143,7 @@ module.exports = {
     'no-sparse-arrays': 2,
     'no-this-before-super': 2,
     'no-throw-literal': 2,
-    'no-trailing-spaces': 2,
+    // 'no-trailing-spaces': 2,
     'no-undef': 2,
     'no-undef-init': 2,
     'no-unexpected-multiline': 2,
@@ -162,17 +173,14 @@ module.exports = {
       }
     }],
     'padded-blocks': [2, 'never'],
-    'quotes': [2, 'single', {
-      'avoidEscape': true,
-      'allowTemplateLiterals': true
-    }],
-    'semi': [2, 'never'],
-    'semi-spacing': [2, {
-      'before': false,
-      'after': true
-    }],
+    // 'quotes':false,
+    // 'semi': [2, 'never'],
+    // 'semi-spacing': [2, {
+    //   'before': false,
+    //   'after': true
+    // }],
     'space-before-blocks': [2, 'always'],
-    'space-before-function-paren': [2, 'never'],
+    // 'space-before-function-paren': [2, 'never'],
     'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [2, {
@@ -190,9 +198,9 @@ module.exports = {
     'yoda': [2, 'never'],
     'prefer-const': 2,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'object-curly-spacing': [2, 'always', {
-      objectsInObjects: false
-    }],
+    // 'object-curly-spacing': [2, 'always', {
+    //   objectsInObjects: false
+    // }],
     'array-bracket-spacing': [2, 'never']
   }
 }
