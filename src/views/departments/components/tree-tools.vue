@@ -46,8 +46,12 @@ export default {
   methods: {
     async clickItem(type) {
       if (type === 'add') {
+        // 接受父组件传的自定义事件 把treeData的每一行数据传给父组件接受
+        this.$emit('handlerAddDept', this.treeData)
         // 添加逻辑
       } else if (type === 'edit') {
+        // 接受父组件传的自定义事件  把treeData的每一行数据传给父组件接受
+        this.$emit('handlerEditDept', this.treeData)
         // 编辑逻辑
       } else {
         // 删除逻辑
