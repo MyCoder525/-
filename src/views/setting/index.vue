@@ -16,7 +16,7 @@
               <el-table-column prop="description" label="描述" />
               <el-table-column label="操作">
                 <template v-slot="{ row }">
-                  <el-button size="small" type="success">分配权限</el-button>
+                  <el-button size="small" type="success" @click="assignPerm(row.id)">分配权限</el-button>
                   <el-button size="small" type="primary" @click="edit(row.id)">编辑</el-button>
                   <el-button size="small" type="danger" @click="del(row.id)">删除</el-button>
                 </template>
@@ -69,14 +69,33 @@
         <el-button type="primary" @click="btnOk">确定</el-button>
       </template>
     </el-dialog>
+    <!-- 权限分配框 -->
+    <el-dialog title="设置权限" :visible.sync="showPermissionDialog">
+      <el-tree :data="permissionlist" check-strictly show-checkbox node-key="id" default-expand-all
+        :default-checked-keys="checkedKeys" :props="props">
+      </el-tree>
+      <template slot="footer" class="dialog-footer">
+        <el-button>取 消</el-button>
+        <el-button type="primary">确 定</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { getRoleList, getCompanyInfo, deleteRole, getRoleDetail, updateRole, addRole } from '@/api/settings'
+import { getPermissionList } from "@/api/permisson";
+import { transListToTree } from "@/utils";
 export default {
   data() {
     return {
+      // 树形结构
+      props: {
+        label: 'name'
+      },
+      checkedKeys: [],
+      permissionlist: [],
+      showPermissionDialog: false,
       // 编辑弹框显示
       showDialog: false,
       // 编辑角色信息
@@ -109,6 +128,13 @@ export default {
     this.getCompanyInfo()
   },
   methods: {
+    // 新增权限 树形结构
+    async assignPerm(id) {
+      this.permissionlist = transListToTree(await getPermissionList(), '0');
+      const { permIds } = await getRoleList(id);
+      this.checkedKeys = permIds;
+      this.showPermissionDialog = true;
+    },
     // 调用获取角色列表
     async getRoleList() {
       const { rows, total } = await getRoleList(this.page)

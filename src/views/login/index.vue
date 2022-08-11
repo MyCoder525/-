@@ -52,19 +52,19 @@ export default {
       },
       loginRules: {
         mobile: [{ required: true, trigger: 'blur', message: '请输入手机号' },
-          {
-            pattern: /^1[3-9]\d{9}$/,
-            message: '请输入正确的手机号',
-            trigger: 'blur'
-          }
+        {
+          pattern: /^1[3-9]\d{9}$/,
+          message: '请输入正确的手机号',
+          trigger: 'blur'
+        }
         ],
         password: [{ required: true, trigger: 'blur', message: '请输入密码' },
-          {
-            min: 6,
-            max: 16,
-            message: '请输入6-16位密码',
-            trigger: 'blur'
-          }]
+        {
+          min: 6,
+          max: 16,
+          message: '请输入6-16位密码',
+          trigger: 'blur'
+        }]
       },
       loading: false,
       passwordType: 'password',
@@ -73,7 +73,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true

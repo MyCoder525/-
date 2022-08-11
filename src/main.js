@@ -17,10 +17,20 @@ Vue.use(components) // 注册自己的插件
 import '@/icons' // icon
 import '@/permission' // permission control
 
+// 引入过滤器
+import * as filters from '@/filters/index'
+// 注册
+// Object.keys(filters).forEach(key => {
+//   Vue.filter(key, filters[key])
+// })
+
+for (const key in filters) {
+  Vue.filter(key, filters[key])
+}
+
 // 一次性引入所有自定义指令
 import * as directives from '@/directives/index'
 // console.log(directives);
-
 for (const key in directives) {
   // 注册指令
   Vue.directive(key, directives[key])
